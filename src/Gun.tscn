@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Male.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/visuals/models/desert_eagle/DesertEagle.glb" type="PackedScene" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="male2" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.161209, 2.11844, -0.5948, -1.19041, 0.417611, 1.81, 1.85054, 0.453185, 1.11251, -26.9287, 0, -18.7175 )
+
+[node name="DesertEagle" parent="." instance=ExtResource( 2 )]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.994406, 0.0525169, -0.0916404, 0, 0.867627, 0.497216, 0.105622, -0.494435, 0.862774, 5.17522, 2.65924, 6.2425 )
+shadow_enabled = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.82482, 0, 0 )
+projection = 1
+size = 5.0

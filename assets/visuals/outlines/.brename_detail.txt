@@ -1,0 +1,13 @@
+dihah_0000_android.png	_shenwei356-brename_	android.png
+dihah_0001_human.png	_shenwei356-brename_	human.png
+dihah_0002_robot.png	_shenwei356-brename_	robot.png
+dihah_0003_octopus.png	_shenwei356-brename_	octopus.png
+dihah_0004_sheep.png	_shenwei356-brename_	sheep.png
+dihah_0005_dog.png	_shenwei356-brename_	dog.png
+dihah_0006_cat.png	_shenwei356-brename_	cat.png
+dihah_0007_bible.png	_shenwei356-brename_	bible.png
+dihah_0008_snake.png	_shenwei356-brename_	snake.png
+dihah_0009_armor.png	_shenwei356-brename_	armor.png
+dihah_0010_fish.png	_shenwei356-brename_	fish.png
+dihah_0011_hand.png	_shenwei356-brename_	hand.png
+dihah_0012_boa.png	_shenwei356-brename_	boa.png

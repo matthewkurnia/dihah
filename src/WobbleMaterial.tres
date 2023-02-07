@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float time_scale = 1.0;
+uniform float wobble_amount: hint_range(0.0, 2.0, 0.1) = 0.8;
+
+float random (int id) {
+    return fract(sin(float(id)) * 43758.5453123);
+}
+
+void vertex() {
+	VERTEX.x += wobble_amount * sin(round(TIME * time_scale) * random(VERTEX_ID));
+	VERTEX.y += wobble_amount * sin(round(TIME * time_scale) * random(VERTEX_ID));
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/time_scale = 8.0
+shader_param/wobble_amount = 0.7

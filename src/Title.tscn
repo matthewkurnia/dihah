@@ -1,0 +1,166 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/ChonkyDynamicFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/Title.gd" type="Script" id=2]
+[ext_resource path="res://src/WobbleMaterial.tres" type="Material" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Beat"
+length = 45.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoesIt:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, 0 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HaveA:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 1.2 ),
+"transitions": PoolRealArray( 1, -2, 0 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Heartbeat:percent_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2, 2.2 ),
+"transitions": PoolRealArray( 1, -2, 0 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "cycle_finished"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3, 45 ),
+"transitions": PoolRealArray( 0, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 1, 1 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("DoesIt:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HaveA:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Heartbeat:percent_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Title" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="PlaceHolder" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.129412 )
+margin_top = -20.0
+margin_right = 364.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 1 )
+text = "Does it have a heartbeat?"
+
+[node name="DoesIt" type="Label" parent="."]
+material = ExtResource( 3 )
+margin_top = -20.0
+margin_right = 98.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 1 )
+text = "Does it"
+
+[node name="HaveA" type="Label" parent="."]
+material = ExtResource( 3 )
+margin_left = 104.0
+margin_top = -20.0
+margin_right = 202.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 1 )
+text = "have a"
+
+[node name="Heartbeat" type="Label" parent="."]
+material = ExtResource( 3 )
+margin_left = 202.0
+margin_top = -20.0
+margin_right = 364.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 1 )
+text = "heartbeat?"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Beat"
+playback_speed = 2.0
+anims/Beat = SubResource( 1 )
+anims/RESET = SubResource( 2 )

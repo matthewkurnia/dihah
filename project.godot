@@ -11,16 +11,20 @@ config_version=4
 [application]
 
 config/name="Heartbeat"
-run/main_scene="res://Test.tscn"
+run/main_scene="res://src/Test.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Controller="*res://src/Controller.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=640
+window/size/height=480
 window/size/test_width=960
 window/size/test_height=540
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [gui]

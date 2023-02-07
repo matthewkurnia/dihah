@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://src/CheckerBoard.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform vec4 color_1: hint_color;
+uniform vec4 color_2: hint_color;
+uniform float aspect_ratio = 1.0;
+uniform int checkerboard_width = 2;
+uniform bool animated = true;
+
+uniform float time_scale = 1.0;
+uniform float wobble_amount: hint_range(0.0, 2.0, 0.1) = 0.8;
+
+float random (int id) {
+    return fract(sin(float(id)) * 43758.5453123);
+}
+
+void vertex() {
+	VERTEX.x += wobble_amount * sin(round(TIME * time_scale) * random(VERTEX_ID));
+	VERTEX.y += wobble_amount * sin(round(TIME * time_scale) * random(VERTEX_ID));
+}
+
+bool xor(bool a, bool b) {
+	return (a || b) && !(a && b);
+}
+
+void fragment() {
+	float stride = 1.0 / float(checkerboard_width);
+	float offset = 0.0;
+	if (animated) {
+		offset = TIME;
+	}
+	int x = int(UV.x / stride);
+	int y = int(UV.y * aspect_ratio / stride + offset);
+	if (xor(x % 2 == 0, y % 2 == 0)) {
+		COLOR = color_1;
+	} else {
+		COLOR = color_2;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = SubResource( 2 )
+shader_param/color_1 = Color( 1, 1, 1, 0 )
+shader_param/color_2 = Color( 1, 1, 1, 0.580392 )
+shader_param/aspect_ratio = 13.7231
+shader_param/checkerboard_width = 5
+shader_param/animated = true
+shader_param/time_scale = 8.0
+shader_param/wobble_amount = 0.3
+
+[node name="CheckerBoard" type="Sprite"]
+material = SubResource( 1 )
+scale = Vector2( 2.32813, 7.51562 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[connection signal="item_rect_changed" from="." to="." method="calculate_aspect_ratio"]

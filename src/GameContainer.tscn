@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="ViewportContainer" type="ViewportContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="."]
