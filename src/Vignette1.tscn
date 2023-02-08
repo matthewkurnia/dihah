@@ -1,9 +1,13 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/ChonkyDynamicFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://src/ChoiceViewerText.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/visuals/Smoke.png" type="Texture" id=4]
+[ext_resource path="res://src/GlitchyOverlay.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/WobbleMaterial.tres" type="Material" id=6]
+[ext_resource path="res://src/IntermediateLevel.gd" type="Script" id=7]
+[ext_resource path="res://src/Blackout.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -60,7 +64,87 @@ orbit_velocity_random = 0.0
 scale_curve = SubResource( 9 )
 color_ramp = SubResource( 7 )
 
-[node name="Vignette1" type="Node2D"]
+[sub_resource type="Animation" id=11]
+resource_name = "Default"
+length = 17.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 15.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChoiceViewerText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 16.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:text_scroll_done")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 16.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChoiceViewerText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:text_scroll_done")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="Vignette1" type="Node"]
+script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
@@ -69,16 +153,17 @@ scale = Vector2( 15, 15 )
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
+material = ExtResource( 6 )
 margin_left = 30.0
-margin_top = 90.0
+margin_top = 66.0
 margin_right = 430.0
-margin_bottom = 390.0
+margin_bottom = 366.0
 custom_fonts/font = ExtResource( 1 )
 text = "Pose your armature. Select your mesh. Copy the armature modifier, then apply the first (topmost) copy. Select your armature in pose mode and ctrl-a -> apply pose as resting pose. Done. Does it have a heartbeat?"
 autowrap = true
 
 [node name="ChoiceViewerText" parent="." instance=ExtResource( 3 )]
-position = Vector2( 30, 360 )
+position = Vector2( 30, 336 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 material = SubResource( 5 )
@@ -88,3 +173,12 @@ lifetime = 6.0
 speed_scale = 0.2
 process_material = SubResource( 10 )
 texture = ExtResource( 4 )
+
+[node name="GlitchyOverlay" parent="." instance=ExtResource( 5 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Default"
+anims/Default = SubResource( 11 )
+anims/RESET = SubResource( 12 )
+
+[node name="Blackout" parent="." instance=ExtResource( 8 )]

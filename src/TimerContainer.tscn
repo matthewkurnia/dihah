@@ -1,17 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/TimerLabel.gd" type="Script" id=1]
 [ext_resource path="res://assets/visuals/Circle.png" type="Texture" id=2]
 [ext_resource path="res://src/ChonkyDynamicFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/WobbleMaterial.tres" type="Material" id=4]
-[ext_resource path="res://src/VG500FontData.tres" type="DynamicFontData" id=5]
-
-[sub_resource type="DynamicFont" id=13]
-size = 100
-outline_size = 8
-outline_color = Color( 0, 0, 0, 0.870588 )
-extra_spacing_bottom = -14
-font_data = ExtResource( 5 )
+[ext_resource path="res://src/MassiveDynamicFont.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Shader" id=6]
 code = "shader_type canvas_item;
@@ -262,7 +255,6 @@ position = Vector2( 309, 45 )
 z_index = 1
 
 [node name="TimeoutContainer" type="Node2D" parent="."]
-visible = false
 position = Vector2( 8, 154 )
 
 [node name="Polygon2D" type="Polygon2D" parent="TimeoutContainer"]
@@ -276,7 +268,7 @@ margin_left = -215.0
 margin_top = -20.0
 margin_right = 215.0
 margin_bottom = 86.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = ExtResource( 5 )
 text = "Time's up!"
 align = 1
 

@@ -1,8 +1,80 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Title.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/WobbleMaterial.tres" type="Material" id=2]
+[ext_resource path="res://src/DefaultDynamicFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/visuals/Heart.png" type="Texture" id=4]
+[ext_resource path="res://src/TitleScreen.gd" type="Script" id=5]
+
+[sub_resource type="Gradient" id=8]
+offsets = PoolRealArray( 0, 0.231481 )
+colors = PoolColorArray( 0.953125, 0.521182, 0.4505, 1, 0.984375, 0.765198, 0.816567, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Beating"
+loop = true
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06, 0.12, 0.18 ),
+"transitions": PoolRealArray( 2, -2, 2, -2 ),
+"update": 0,
+"values": [ Vector2( 0.3, 0.3 ), Vector2( 0.4, 0.4 ), Vector2( 0.3, 0.3 ), Vector2( 0.4, 0.4 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [node name="TitleScreen" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -28, 529 )
+rotation = -1.55817
+texture = SubResource( 9 )
+polygon = PoolVector2Array( 33.1237, 9.58245, 48.5467, 676.441, 547.583, 676.138, 551.095, 4.04054 )
 
 [node name="Title" parent="." instance=ExtResource( 1 )]
 position = Vector2( 23, 0 )
+
+[node name="Label" type="Label" parent="."]
+material = ExtResource( 2 )
+margin_left = 461.0
+margin_top = 205.0
+margin_right = 578.0
+margin_bottom = 256.0
+custom_fonts/font = ExtResource( 3 )
+text = "Press any key
+to begin."
+
+[node name="Heart" type="Sprite" parent="."]
+visible = false
+position = Vector2( 513, 106 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Heart"]
+autoplay = "Beating"
+playback_process_mode = 0
+playback_speed = 3.0
+anims/Beating = SubResource( 3 )
+anims/RESET = SubResource( 4 )

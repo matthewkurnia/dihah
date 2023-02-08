@@ -11,12 +11,13 @@ config_version=4
 [application]
 
 config/name="Heartbeat"
-run/main_scene="res://src/Test.tscn"
+run/main_scene="res://src/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Controller="*res://src/Controller.gd"
+Config="*res://src/Config.gd"
 
 [display]
 

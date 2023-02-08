@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/ChonkyDynamicFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/visuals/images/dihah_0005_dog.png" type="Texture" id=2]
@@ -8,15 +8,16 @@
 [ext_resource path="res://src/WobbleMaterial.tres" type="Material" id=6]
 [ext_resource path="res://src/ChoiceViewerText.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/CheckerBoard.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Marshall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/SubjectContainer.gd" type="Script" id=29]
 [ext_resource path="res://src/RegularQuestion.gd" type="Script" id=30]
 
-[sub_resource type="Gradient" id=8]
+[sub_resource type="Gradient" id=15]
 offsets = PoolRealArray( 0, 0.231481 )
 colors = PoolColorArray( 0.953125, 0.521182, 0.4505, 1, 0.984375, 0.765198, 0.816567, 1 )
 
 [sub_resource type="GradientTexture" id=9]
-gradient = SubResource( 8 )
+gradient = SubResource( 15 )
 
 [sub_resource type="StreamTexture" id=14]
 flags = 4
@@ -256,60 +257,48 @@ tracks/9/keys = {
 "values": [ false, true ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("ChoiceViewerText:choice_made")
+tracks/10/path = NodePath("RevealTextContainer:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/11/type = "value"
-tracks/11/path = NodePath("RevealTextContainer:position")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/keys = {
 "times": PoolRealArray( 3.7, 3.9 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 320, 423 ), Vector2( 320, 373 ) ]
 }
-tracks/12/type = "value"
-tracks/12/path = NodePath("RevealTextContainer:modulate")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/keys = {
+tracks/11/type = "value"
+tracks/11/path = NodePath("RevealTextContainer:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
 "times": PoolRealArray( 0, 3.7, 3.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/13/type = "value"
-tracks/13/path = NodePath("DescriptionTextContainer:position")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/keys = {
+tracks/12/type = "value"
+tracks/12/path = NodePath("DescriptionTextContainer:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
 "times": PoolRealArray( 4.5, 4.7 ),
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 320, 0 ), Vector2( 320, 50 ) ]
 }
-tracks/14/type = "value"
-tracks/14/path = NodePath("DescriptionTextContainer:modulate")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/keys = {
+tracks/13/type = "value"
+tracks/13/path = NodePath("DescriptionTextContainer:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
 "times": PoolRealArray( 0, 4.5, 4.7 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
@@ -424,7 +413,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("ChoiceViewerText:choice_made")
@@ -460,7 +449,7 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 tracks/12/type = "value"
 tracks/12/path = NodePath("DescriptionTextContainer:position")
@@ -484,14 +473,11 @@ tracks/13/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="RegularQuestion" type="Node2D"]
+[node name="RegularQuestion" type="Node"]
 script = ExtResource( 30 )
-__meta__ = {
-"_edit_vertical_guides_": [ 814.0, 694.0 ]
-}
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( -28, 529 )
@@ -500,6 +486,7 @@ texture = SubResource( 9 )
 polygon = PoolVector2Array( 33.1237, 9.58245, 48.5467, 676.441, 547.583, 676.138, 551.095, 4.04054 )
 
 [node name="RevealBackdrop" type="Sprite" parent="."]
+visible = false
 position = Vector2( 320, 240 )
 scale = Vector2( 0.9, 0.8 )
 texture = SubResource( 14 )
@@ -551,6 +538,7 @@ anims/Idle = SubResource( 4 )
 anims/RESET = SubResource( 5 )
 
 [node name="RevealTextContainer" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 320, 373 )
 
 [node name="Label" type="Label" parent="RevealTextContainer"]
@@ -564,6 +552,7 @@ align = 1
 autowrap = true
 
 [node name="DescriptionTextContainer" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 320, 50 )
 
 [node name="Label" type="Label" parent="DescriptionTextContainer"]
@@ -577,6 +566,7 @@ align = 1
 autowrap = true
 
 [node name="TimerContainer" parent="." instance=ExtResource( 4 )]
+visible = false
 
 [node name="CheckerBoard1" parent="." instance=ExtResource( 8 )]
 position = Vector2( 324, 451 )
@@ -584,10 +574,11 @@ rotation = 1.5708
 scale = Vector2( 0.968132, 13.2858 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Guess"
 anims/Guess = SubResource( 10 )
 anims/RESET = SubResource( 11 )
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
 color = Color( 1, 1, 1, 0 )
 polygon = PoolVector2Array( -9, -15, -10, 495, 667, 495, 660, -16 )
+
+[node name="Marshall" parent="." instance=ExtResource( 9 )]

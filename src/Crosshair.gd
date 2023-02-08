@@ -5,11 +5,16 @@ const EAGERNESS := 0.2
 const WOBBLE_AMOUNT := 1.5
 const FPS := 18.0
 
-export var kill_pos := Vector2()
-export var spare_pos := Vector2()
+export var crosshair_kill_position := Vector2()
+export var crosshair_spare_position := Vector2()
+export var deer_kill_position := Vector2()
+export var deer_spare_position := Vector2()
 
-onready var target_position := kill_pos
-onready var lens := $Lens
+onready var crosshair_target_position := crosshair_kill_position
+onready var deer_target_position := deer_kill_position
+onready var crosshair := $Crosshair
+onready var deer := $Deer
+onready var lens := $Crosshair/Lens
 
 var time_relapsed := 0.0
 
@@ -22,9 +27,11 @@ func _ready():
 func on_state_change(state) -> void:
 	match state:
 		Controller.Choice.YES:
-			target_position = kill_pos
+			crosshair_target_position = crosshair_kill_position
+			deer_target_position = deer_kill_position
 		Controller.Choice.NO:
-			target_position = spare_pos
+			crosshair_target_position = crosshair_spare_position
+			deer_target_position = deer_spare_position
 
 
 func _physics_process(delta):
@@ -32,8 +39,9 @@ func _physics_process(delta):
 	if time_relapsed < 1 / FPS:
 		return
 	time_relapsed = 0.0
-	position = lerp(position, target_position, EAGERNESS)
-	position.x += randf() * WOBBLE_AMOUNT
-	position.y += randf() * WOBBLE_AMOUNT
-	position.x += randf() * WOBBLE_AMOUNT
-	position.y += randf() * WOBBLE_AMOUNT
+	deer.position = lerp(deer.position, deer_target_position, 0.5 * EAGERNESS)
+	crosshair.position = lerp(crosshair.position, crosshair_target_position, EAGERNESS)
+	crosshair.position.x += randf() * WOBBLE_AMOUNT
+	crosshair.position.y += randf() * WOBBLE_AMOUNT
+	crosshair.position.x += randf() * WOBBLE_AMOUNT
+	crosshair.position.y += randf() * WOBBLE_AMOUNT

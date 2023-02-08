@@ -1,8 +1,8 @@
 extends Node2D
 
 
-const vertical_resolution := 480
-const stride := 30
+const VERTICAL_RESOLUTION := 480
+const STRIDE := 30
 
 #onready var title_scene := preload("res://src/Title.tscn")
 
@@ -16,5 +16,5 @@ func _ready():
 func cycle_finished() -> void:
 	var title_instance := self.duplicate()
 	title_instance.position.x = self.position.x
-	title_instance.position.y = fmod(self.position.y + stride, vertical_resolution)
+	title_instance.position.y = fmod(self.position.y + STRIDE, VERTICAL_RESOLUTION + STRIDE)
 	get_parent().add_child(title_instance)

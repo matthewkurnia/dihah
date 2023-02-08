@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/visuals/OggDeerVideoCC.ogv" type="VideoStream" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://src/WobbleMaterial.tres" type="Material" id=7]
 [ext_resource path="res://src/ChoiceViewerText.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/ChonkyDynamicFont.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/GlitchyOverlay.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/IntermediateLevel.gd" type="Script" id=11]
+[ext_resource path="res://src/Blackout.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -31,33 +34,38 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 shader_param/distorsion_amount = 0.7
-shader_param/center = Vector2( 196, 253 )
+shader_param/center = Vector2( 181, 192 )
 shader_param/fringe_color = Color( 0.133333, 0.0352941, 0.00392157, 1 )
 shader_param/fringe_amount = 4.0
 
-[node name="Vignette2" type="Node2D"]
+[node name="Vignette2" type="Node"]
+script = ExtResource( 11 )
 
 [node name="DeerContainer" type="Node2D" parent="."]
-position = Vector2( -74, 28 )
+script = ExtResource( 6 )
+crosshair_kill_position = Vector2( 218, 235 )
+crosshair_spare_position = Vector2( 181, 192 )
+deer_kill_position = Vector2( -64, 0 )
+deer_spare_position = Vector2( 11, 36 )
 
-[node name="VideoPlayer" type="VideoPlayer" parent="DeerContainer"]
+[node name="Deer" type="Node2D" parent="DeerContainer"]
+position = Vector2( 11, 36 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="DeerContainer/Deer"]
 margin_right = 640.0
 margin_bottom = 480.0
 stream = ExtResource( 1 )
 autoplay = true
 
-[node name="DeerScreenshot" type="Sprite" parent="DeerContainer"]
+[node name="DeerScreenshot" type="Sprite" parent="DeerContainer/Deer"]
 visible = false
 position = Vector2( 319.388, 238.25 )
 scale = Vector2( 0.891621, 0.891621 )
 texture = ExtResource( 4 )
 
 [node name="Crosshair" type="Node2D" parent="DeerContainer"]
-position = Vector2( 270, 225 )
+position = Vector2( 181, 192 )
 scale = Vector2( 0.5, 0.5 )
-script = ExtResource( 6 )
-kill_pos = Vector2( 270, 225 )
-spare_pos = Vector2( 150, 150 )
 
 [node name="Lens" type="Sprite" parent="DeerContainer/Crosshair"]
 material = SubResource( 2 )
@@ -86,3 +94,17 @@ autowrap = true
 
 [node name="ChoiceViewerText" parent="." instance=ExtResource( 8 )]
 position = Vector2( 390, 245 )
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="GlitchyOverlay" parent="." instance=ExtResource( 10 )]
+
+[node name="Blackout" parent="." instance=ExtResource( 12 )]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
