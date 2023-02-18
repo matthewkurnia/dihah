@@ -41,7 +41,7 @@ const DESCRIPTION := {
 	"bible": "My son, give me your heart and let your eyes delight in my ways ~Proverbs 23:26",
 	"human": "Is anyone out there?",
 	"sheep": "Baa.",
-	"snake": "It's venom may stop your heartbeat!",
+	"snake": "Its venom may stop your heartbeat!",
 	"octopus": "They have 3 hearts!",
 	"hand": "Where's the rest?",
 	"boa": "A prized possesion of a once petit prince.",

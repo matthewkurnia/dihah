@@ -108,12 +108,13 @@ margin_top = 66.0
 margin_right = 560.0
 margin_bottom = 287.0
 custom_fonts/font = ExtResource( 2 )
-text = "Press any key to change selection.
+text = "Use arrow keys to change selection.
 
 Press enter to confirm selection.
 
-This is a game about choice,
-so choose carefully.
+This is a game about dissecting
+outlines to expose the truth.
+Your choices are the scalpel.
 
 Do you understand?"
 

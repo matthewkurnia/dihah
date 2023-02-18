@@ -1,8 +1,8 @@
 [gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/ChonkyDynamicFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/visuals/images/dihah_0005_dog.png" type="Texture" id=2]
-[ext_resource path="res://assets/visuals/outlines/dihah_0005_dog.png" type="Texture" id=3]
+[ext_resource path="res://assets/visuals/images/dog.png" type="Texture" id=2]
+[ext_resource path="res://assets/visuals/outlines/dog.png" type="Texture" id=3]
 [ext_resource path="res://src/TimerContainer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/DefaultDynamicFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/WobbleMaterial.tres" type="Material" id=6]
@@ -133,7 +133,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=10]
 resource_name = "Guess"
-length = 5.0
+length = 8.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("SubjectContainer")
 tracks/0/interp = 1
@@ -303,6 +303,44 @@ tracks/13/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/14/type = "method"
+tracks/14/path = NodePath(".")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "done" ],
+"method": "emit_signal"
+} ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("InstructionContainer:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 7.8, 8 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 320, 509 ), Vector2( 320, 445 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("InstructionContainer:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 7.8, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -475,6 +513,30 @@ tracks/13/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
+tracks/14/type = "value"
+tracks/14/path = NodePath("InstructionContainer:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 320, 600 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("InstructionContainer:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="RegularQuestion" type="Node"]
 script = ExtResource( 30 )
@@ -562,6 +624,19 @@ margin_right = 250.0
 margin_bottom = 100.0
 custom_fonts/font = ExtResource( 5 )
 text = "Lorem ipsum dolor sit amet"
+align = 1
+autowrap = true
+
+[node name="InstructionContainer" type="Node2D" parent="."]
+position = Vector2( 320, 600 )
+
+[node name="Label" type="Label" parent="InstructionContainer"]
+material = ExtResource( 6 )
+margin_left = -250.0
+margin_right = 250.0
+margin_bottom = 100.0
+custom_fonts/font = ExtResource( 5 )
+text = "Press enter to continue..."
 align = 1
 autowrap = true
 

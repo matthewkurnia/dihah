@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/visuals/eye/_0002_Eye5.png" type="Texture" id=6]
 [ext_resource path="res://assets/visuals/eye/_0003_Eye4.png" type="Texture" id=7]
 [ext_resource path="res://src/ChoiceViewerText.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/ChonkyDynamicFont.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/DefaultDynamicFont.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/GlitchyOverlay.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/IntermediateLevel.gd" type="Script" id=11]
 [ext_resource path="res://src/Blackout.tscn" type="PackedScene" id=12]
@@ -108,27 +108,28 @@ script = ExtResource( 11 )
 position = Vector2( 318, 236 )
 scale = Vector2( 0.663191, 0.663191 )
 frames = SubResource( 1 )
-frame = 4
+frame = 5
 playing = true
 
 [node name="Label" type="Label" parent="."]
 material = ExtResource( 13 )
-margin_left = 120.0
-margin_top = 29.0
-margin_right = 520.0
-margin_bottom = 810.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 590.0
+margin_bottom = 831.0
 custom_fonts/font = ExtResource( 9 )
-text = "Tomorrow and tomorrow and tomorrow
-Creeps in this petty pace from day to day
-To the last syllable of recorded time,
-And all our yesterdays have lighted fools
-The way to dusty death. Does a fool have a heartbeat?
-"
+text = "The piercing gaze sees not its own reflection on the surface.
+It flays its subject, strips away the flesh piece by piece until the viscera are exposed.
+It tears open the rib cage, coveting the beating heart.
+You are no different. You violate the fruit to reach the seed.
+In this moment, as you teeter on the precipice of madness, ask yourself…
+
+Do you have a heartbeat?"
 align = 1
 autowrap = true
 
 [node name="ChoiceViewerText" parent="." instance=ExtResource( 8 )]
-position = Vector2( 277, 357 )
+position = Vector2( 277, 337 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Default"

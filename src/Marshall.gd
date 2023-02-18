@@ -6,7 +6,7 @@ signal done()
 enum Correctness { FALSE, TRUE, AMBIGUOUS }
 
 const MESSAGES = [
-	["WRONG!", "NOPE!", "FALSE!"],
+	["WRONG!", "YOU FOOL!", "BAMBOOZLED!"],
 	["CORRECT!"],
 	["????????"]
 ]

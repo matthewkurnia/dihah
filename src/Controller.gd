@@ -19,16 +19,11 @@ func _unhandled_input(event):
 
 
 func select(event) -> bool:
-	return event.is_action_pressed("ui_accept") and not event.is_echo()
+	return event.is_action_pressed("select") and not event.is_echo()
 
 
 func toggle(event) -> bool:
-	return (
-		event is InputEventKey and
-		event.is_pressed() and
-		not event.is_echo() and
-		not event.is_action_pressed("ui_cancel")
-	)
+	return event.is_action_pressed("toggle_selection") and not event.is_echo()
 
 
 func toggle_state() -> void:
